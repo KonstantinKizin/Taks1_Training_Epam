@@ -23,11 +23,8 @@ public class Main {
 		//////////////////////////////////////////////////////////////////
 
 		Criteria<Oven> criteriaOven = new Criteria<Oven>();
-		criteriaOven.add(Oven.CAPACITY, 3);
+		criteriaOven.add(Oven.CAPACITY, new Object());
 		criteriaOven.add(Oven.HEIGHT , 3);
-
-		System.out.println(Validator.criteriaValidator(criteriaOven));
-
 
 		appliance = service.find(criteriaOven);
 
@@ -43,8 +40,6 @@ public class Main {
 		criteriaOven.add(Oven.HEIGHT, 200);
 		criteriaOven.add(Oven.DEPTH, 300);
 
-		System.out.println(Validator.criteriaValidator(criteriaOven));
-
 		appliance = service.find(criteriaOven);
 
 		//PrintApplianceInfo.print(appliance);
@@ -55,9 +50,6 @@ public class Main {
 		criteriaTabletPC.add(TabletPC.COLOR, "BLUE");
 		criteriaTabletPC.add(TabletPC.DISPLAY_INCHES, 14);
 		criteriaTabletPC.add(TabletPC.MEMORY_ROM, 4);
-
-
-		System.out.println(Validator.criteriaValidator(criteriaTabletPC));
 
 
 		appliance = service.find(criteriaOven);

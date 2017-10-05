@@ -16,6 +16,8 @@ import java.util.regex.Pattern;
 
 public class ApplianceDAOImpl implements ApplianceDAO{
 
+	private static final String  PATH = "src"+File.separator+"main"+File.separator+"resources"+File.separator+"appliances_db.txt";
+
 	private Scanner reader ;
 
 	private PrintWriter writer;
@@ -25,9 +27,10 @@ public class ApplianceDAOImpl implements ApplianceDAO{
 	@Override
 	public <E> Appliance find(Criteria<E> criteria) {
 
-		Appliance appliance = null  ;
 
-		File file = new File("src"+File.separator+"main"+File.separator+"resources"+File.separator+"appliances_db.txt");
+
+		Appliance appliance = null  ;
+		File file = new File(PATH);
 
 
 
@@ -60,20 +63,5 @@ public class ApplianceDAOImpl implements ApplianceDAO{
 }
 
 
-class ResultSet{
-
-
-
-}
-
-class Connection{
-
-
-
-
-
-
-
-}
 
 

@@ -1,11 +1,5 @@
 package by.tc.task01.entity;
 
-import by.tc.task01.entity.criteria.SearchCriteria;
-
-
-import java.util.HashMap;
-import java.util.Map;
-
 public class Laptop extends Appliance{
 
     private float batareyCapacity;
@@ -74,20 +68,6 @@ public class Laptop extends Appliance{
         this.displayInchs = displayInchs;
     }
 
-    @Override
-    public Map<Object , Object> getFields(){
-
-        Map<Object , Object> fields= new HashMap<Object , Object>();
-
-        fields.put(SearchCriteria.Laptop.BATTERY_CAPACITY, this.batareyCapacity);
-        fields.put(SearchCriteria.Laptop.OS , this.os);
-        fields.put(SearchCriteria.Laptop.CPU,this.cpu);
-        fields.put(SearchCriteria.Laptop.DISPLAY_INCHS, this.displayInchs);
-        fields.put(SearchCriteria.Laptop.SYSTEM_MEMORY,this.systemMemory);
-        fields.put(SearchCriteria.Laptop.MEMORY_ROM , this.memoryRom);
-
-        return fields;
-    }
 
 
 
@@ -129,5 +109,4 @@ public class Laptop extends Appliance{
                 '}';
     }
 
-    // you may add your own code here
 }

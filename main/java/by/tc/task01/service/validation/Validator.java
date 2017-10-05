@@ -95,9 +95,6 @@ public class Validator {
 	}
 
 
-
-
-
 	private static  boolean checkForNumber(Collection<Object> values){
 		for(Object tmp : values){
 			if((tmp instanceof Number)){
