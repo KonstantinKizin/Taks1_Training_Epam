@@ -7,6 +7,7 @@ import by.tc.task01.entity.criteria.Criteria;
 import by.tc.task01.service.ApplianceService;
 import static by.tc.task01.service.validation.Validator.criteriaValidator;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,14 +18,18 @@ public class ApplianceServiceImpl implements ApplianceService{
 
 	@Override
 	public <E> Appliance find(Criteria<E> criteria) {
-
 		boolean valid = criteriaValidator(criteria);
-
+		Appliance appliance = null;
 		if (valid) {
-			return applianceDAO.find(criteria);
-		}else {
-			return null;
+			try {
+				appliance =  applianceDAO.find(criteria);
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}catch (Exception e){
+				e.printStackTrace();
+			}
 		}
+		return appliance;
 	}
 
 

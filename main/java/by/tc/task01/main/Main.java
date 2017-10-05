@@ -11,6 +11,8 @@ import by.tc.task01.service.ServiceFactory;
 import by.tc.task01.service.validation.Validator;
 
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main {
 
@@ -23,7 +25,7 @@ public class Main {
 		//////////////////////////////////////////////////////////////////
 
 		Criteria<Oven> criteriaOven = new Criteria<Oven>();
-		criteriaOven.add(Oven.CAPACITY, new Object());
+		criteriaOven.add(Oven.CAPACITY, 12);
 		criteriaOven.add(Oven.HEIGHT , 3);
 
 		appliance = service.find(criteriaOven);
@@ -40,7 +42,7 @@ public class Main {
 		criteriaOven.add(Oven.HEIGHT, 200);
 		criteriaOven.add(Oven.DEPTH, 300);
 
-		appliance = service.find(criteriaOven);
+		//appliance = service.find(criteriaOven);
 
 		//PrintApplianceInfo.print(appliance);
 
@@ -52,9 +54,10 @@ public class Main {
 		criteriaTabletPC.add(TabletPC.MEMORY_ROM, 4);
 
 
-		appliance = service.find(criteriaOven);
+		//appliance = service.find(criteriaOven);
 
 		//PrintApplianceInfo.print(appliance);
+
 
 
 

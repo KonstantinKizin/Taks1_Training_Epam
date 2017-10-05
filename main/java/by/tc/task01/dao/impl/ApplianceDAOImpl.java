@@ -3,39 +3,21 @@ package by.tc.task01.dao.impl;
 import by.tc.task01.dao.ApplianceDAO;
 import by.tc.task01.entity.Appliance;
 import by.tc.task01.entity.criteria.Criteria;
-import by.tc.task01.entity.criteria.SearchCriteria;
-
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.regex.Pattern;
+
 
 public class ApplianceDAOImpl implements ApplianceDAO{
-
-	private static final String  PATH = "src"+File.separator+"main"+File.separator+"resources"+File.separator+"appliances_db.txt";
-
-	private Scanner reader ;
-
-	private PrintWriter writer;
-
 
 
 	@Override
 	public <E> Appliance find(Criteria<E> criteria) {
-
-
-
-		Appliance appliance = null  ;
-		File file = new File(PATH);
-
-
-
-
-
+		Appliance appliance = null;
+		try {
+			appliance = new OvenDAOImpl().find(criteria);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 		return appliance;
 	}
 
