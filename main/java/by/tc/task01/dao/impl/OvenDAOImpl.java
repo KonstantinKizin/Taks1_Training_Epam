@@ -7,14 +7,11 @@ import by.tc.task01.entity.Oven;
 import by.tc.task01.entity.criteria.Criteria;
 import by.tc.task01.entity.criteria.SearchCriteria;
 
-import static by.tc.task01.entity.criteria.SearchCriteria.Oven.*;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class OvenDAOImpl implements ApplianceDAO {
 
@@ -31,6 +28,15 @@ public class OvenDAOImpl implements ApplianceDAO {
     public <E> Appliance find(Criteria<E> criteria) {
 
         Map<E,Object> map = criteria.getCriteria();
+        Set entitySet = map.entrySet();
+
+        List<String> criterians = new ArrayList<String>();
+
+        for(Object o : entitySet){
+            criterians.add(o.toString());
+        }
+
+
 
         Appliance appliance = null;
         try {
@@ -38,13 +44,44 @@ public class OvenDAOImpl implements ApplianceDAO {
             while (reader.hasNextLine()) {
                 String line = reader.nextLine();
                 if (line.startsWith("Oven : ")) {
+                    int count = 0;
+                    for(String buf : criterians){
+                        if(line.contains(buf)){
+                            count = count + 1;
+                        }
+                    }
+                    if(count == criterians.size()){
 
+                        Map<String ,String> objectMap = new HashMap<String, String>();
+
+                        String[] lineArr = line.split(" ");
+
+                        String[] entrySet = new String[lineArr.length - 2];
+
+                        System.arraycopy(lineArr , 2 , entrySet, 0 , lineArr.length - 2);
+
+                        int lenght = entrySet.length;
+
+                       for(int i = 0; i < lenght; i++){
+
+                           int spaceIndex = entrySet[i].indexOf("=");
+
+                           String key = entrySet[i].substring(0, spaceIndex );
+                           String value = entrySet[i].substring((spaceIndex+1),entrySet[i].length() - 1);
+                           objectMap.put(key , value);
+                       }
+
+                       appliance = buildAppliance(objectMap);
+
+                    }
                     //1)проверить на соответствие критерия.
                     // если да, построить обьект и вернуть.
 
                 }
             }
         }catch (IOException e){
+            throw new DAOException(e);
+        }catch (Exception e){
             throw new DAOException(e);
         }finally {
             if(reader != null){
@@ -76,21 +113,21 @@ public class OvenDAOImpl implements ApplianceDAO {
 
 
 
-    private Oven buildAppliance( Map<SearchCriteria.Oven, Object> appliancMap){
+    private Oven buildAppliance( Map<String, String> appliancMap){
 
         Oven oven = new Oven();
 
-        oven.setCapacity((Float) appliancMap.get(SearchCriteria.Oven.CAPACITY));
+        oven.setCapacity(Float.valueOf(appliancMap.get(SearchCriteria.Oven.CAPACITY)));
 
-        oven.setDepth((Float)appliancMap.get(SearchCriteria.Oven.DEPTH));
+        oven.setDepth(Float.valueOf(appliancMap.get(SearchCriteria.Oven.DEPTH)));
 
-        oven.setHeight((Float) appliancMap.get(SearchCriteria.Oven.HEIGHT));
+        oven.setHeight(Float.valueOf(appliancMap.get(SearchCriteria.Oven.HEIGHT)));
 
-        oven.setPowerConsuption((Float) appliancMap.get(SearchCriteria.Oven.POWER_CONSUMPTION));
+        oven.setPowerConsuption(Float.valueOf(appliancMap.get(SearchCriteria.Oven.POWER_CONSUMPTION)));
 
-        oven.setWeight((Float) appliancMap.get(SearchCriteria.Oven.WEIGHT));
+        oven.setWeight(Float.valueOf(appliancMap.get(SearchCriteria.Oven.WEIGHT)));
 
-        oven.setWidth((Float) appliancMap.get(SearchCriteria.Oven.WIDTH));
+        oven.setWidth(Float.valueOf(appliancMap.get(SearchCriteria.Oven.WIDTH)));
 
         return oven;
     }
