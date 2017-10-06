@@ -71,7 +71,7 @@ public class OvenDAOImpl implements ApplianceDAO {
                            objectMap.put(key , value);
                        }
 
-                       appliance = buildAppliance(objectMap);
+                        appliance = buildAppliance(objectMap);
 
                     }
                     //1)проверить на соответствие критерия.
@@ -117,17 +117,17 @@ public class OvenDAOImpl implements ApplianceDAO {
 
         Oven oven = new Oven();
 
-        oven.setCapacity(Float.valueOf(appliancMap.get(SearchCriteria.Oven.CAPACITY)));
+        oven.setCapacity(Float.valueOf(appliancMap.get(SearchCriteria.Oven.CAPACITY.name())));
 
-        oven.setDepth(Float.valueOf(appliancMap.get(SearchCriteria.Oven.DEPTH)));
+        oven.setDepth(Float.valueOf(appliancMap.get(SearchCriteria.Oven.DEPTH.name())));
 
-        oven.setHeight(Float.valueOf(appliancMap.get(SearchCriteria.Oven.HEIGHT)));
+        oven.setHeight(Float.valueOf(appliancMap.get(SearchCriteria.Oven.HEIGHT.name())));
 
-        oven.setPowerConsuption(Float.valueOf(appliancMap.get(SearchCriteria.Oven.POWER_CONSUMPTION)));
+        oven.setPowerConsuption(Float.valueOf(appliancMap.get(SearchCriteria.Oven.POWER_CONSUMPTION.name())));
 
-        oven.setWeight(Float.valueOf(appliancMap.get(SearchCriteria.Oven.WEIGHT)));
+        oven.setWeight(Float.valueOf(appliancMap.get(SearchCriteria.Oven.WEIGHT.name())));
 
-        oven.setWidth(Float.valueOf(appliancMap.get(SearchCriteria.Oven.WIDTH)));
+        oven.setWidth(Float.valueOf(appliancMap.get(SearchCriteria.Oven.WIDTH.name())));
 
         return oven;
     }
