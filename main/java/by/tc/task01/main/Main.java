@@ -21,8 +21,9 @@ public class Main {
 		//////////////////////////////////////////////////////////////////
 
 		Criteria<Oven> criteriaOven = new Criteria<Oven>();
-		criteriaOven.add(Oven.CAPACITY, 36);
-		criteriaOven.add(Oven.HEIGHT , 45.5);
+		criteriaOven.add(Oven.CAPACITY, 33);
+		criteriaOven.add(Oven.HEIGHT , 45);
+		criteriaOven.add(Oven.WEIGHT , 12);
 
 		appliance = service.find(criteriaOven);
 
@@ -31,12 +32,12 @@ public class Main {
 		//////////////////////////////////////////////////////////////////
 
 		criteriaOven = new Criteria<Oven>();
-		criteriaOven.add(Oven.HEIGHT, 200);
-		criteriaOven.add(Oven.DEPTH, 300);
+		criteriaOven.add(Oven.HEIGHT, 40);
+		criteriaOven.add(Oven.DEPTH, 60);
 
-		//appliance = service.find(criteriaOven);
+		appliance = service.find(criteriaOven);
 
-		//PrintApplianceInfo.print(appliance);
+		PrintApplianceInfo.print(appliance);
 
 		//////////////////////////////////////////////////////////////////
 		

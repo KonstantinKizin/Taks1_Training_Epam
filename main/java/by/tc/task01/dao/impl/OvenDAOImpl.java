@@ -36,7 +36,7 @@ public class OvenDAOImpl implements ApplianceDAO {
             if (appMap != null) {
                 appliance = buildAppliance(appMap);
             }
-            
+
         }catch (IOException e){
             throw new DAOException(e);
         }catch (Exception e){
