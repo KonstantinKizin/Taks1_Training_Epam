@@ -1,9 +1,13 @@
 package by.tc.task01.dao.impl;
 
 import by.tc.task01.dao.ApplianceDAO;
+import by.tc.task01.dao.DAOException;
 import by.tc.task01.entity.Appliance;
 import by.tc.task01.entity.Oven;
 import by.tc.task01.entity.criteria.Criteria;
+import by.tc.task01.entity.criteria.SearchCriteria;
+
+import static by.tc.task01.entity.criteria.SearchCriteria.Oven.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,11 +28,9 @@ public class OvenDAOImpl implements ApplianceDAO {
 
 
     @Override
-    public <E> Appliance find(Criteria<E> criteria) throws IOException {
+    public <E> Appliance find(Criteria<E> criteria) {
 
         Map<E,Object> map = criteria.getCriteria();
-
-
 
         Appliance appliance = null;
         try {
@@ -36,11 +38,14 @@ public class OvenDAOImpl implements ApplianceDAO {
             while (reader.hasNextLine()) {
                 String line = reader.nextLine();
                 if (line.startsWith("Oven : ")) {
-                    appliance = buildAppliance(line);
+
+                    //1)проверить на соответствие критерия.
+                    // если да, построить обьект и вернуть.
+
                 }
             }
         }catch (IOException e){
-            throw e;
+            throw new DAOException(e);
         }finally {
             if(reader != null){
                 reader.close();
@@ -71,11 +76,24 @@ public class OvenDAOImpl implements ApplianceDAO {
 
 
 
-    private Oven buildAppliance(String resultSet){
+    private Oven buildAppliance( Map<SearchCriteria.Oven, Object> appliancMap){
 
         Oven oven = new Oven();
 
+        oven.setCapacity((Float) appliancMap.get(SearchCriteria.Oven.CAPACITY));
+
+        oven.setDepth((Float)appliancMap.get(SearchCriteria.Oven.DEPTH));
+
+        oven.setHeight((Float) appliancMap.get(SearchCriteria.Oven.HEIGHT));
+
+        oven.setPowerConsuption((Float) appliancMap.get(SearchCriteria.Oven.POWER_CONSUMPTION));
+
+        oven.setWeight((Float) appliancMap.get(SearchCriteria.Oven.WEIGHT));
+
+        oven.setWidth((Float) appliancMap.get(SearchCriteria.Oven.WIDTH));
 
         return oven;
     }
+
+
 }

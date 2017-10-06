@@ -88,11 +88,6 @@ public class Validator {
 		return checkForNumber(values);
 	}
 
-	private static void didntInventMethodNameSoz(List list , SearchCriteria searchCriteria){
-
-
-
-	}
 
 
 	private static  boolean checkForNumber(Collection<Object> values){

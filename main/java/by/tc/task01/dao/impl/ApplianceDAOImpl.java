@@ -1,6 +1,7 @@
 package by.tc.task01.dao.impl;
 
 import by.tc.task01.dao.ApplianceDAO;
+import by.tc.task01.dao.DAOException;
 import by.tc.task01.entity.Appliance;
 import by.tc.task01.entity.criteria.Criteria;
 import java.io.FileNotFoundException;
@@ -12,12 +13,12 @@ public class ApplianceDAOImpl implements ApplianceDAO{
 
 
 	@Override
-	public <E> Appliance find(Criteria<E> criteria) throws IOException  {
+	public <E> Appliance find(Criteria<E> criteria)  {
 		Appliance appliance = null;
 		try {
 			appliance = new OvenDAOImpl().find(criteria);
-		} catch (IOException e) {
-			throw e;
+		} catch (DAOException e) {
+			throw new DAOException(e);
 		}
 		return appliance;
 	}
