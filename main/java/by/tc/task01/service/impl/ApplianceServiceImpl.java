@@ -5,9 +5,9 @@ import by.tc.task01.dao.impl.ApplianceDAOImpl;
 import by.tc.task01.entity.Appliance;
 import by.tc.task01.entity.criteria.Criteria;
 import by.tc.task01.service.ApplianceService;
+import by.tc.task01.service.ServiceException;
 import static by.tc.task01.service.validation.Validator.criteriaValidator;
-
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,11 +22,11 @@ public class ApplianceServiceImpl implements ApplianceService{
 		Appliance appliance = null;
 		if (valid) {
 			try {
+
 				appliance =  applianceDAO.find(criteria);
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			}catch (Exception e){
-				e.printStackTrace();
+
+			} catch (IOException e) {
+				throw new ServiceException(e.getMessage());
 			}
 		}
 		return appliance;

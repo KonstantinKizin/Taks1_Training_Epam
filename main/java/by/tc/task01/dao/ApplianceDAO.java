@@ -4,11 +4,12 @@ import by.tc.task01.entity.Appliance;
 import by.tc.task01.entity.criteria.Criteria;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 public interface ApplianceDAO {
 
-	<E> Appliance find(Criteria<E> criteria);
+	<E> Appliance find(Criteria<E> criteria) throws IOException;
 
 	<E> boolean add(Criteria<E> criteria);
 

@@ -6,7 +6,6 @@ import by.tc.task01.entity.Oven;
 import by.tc.task01.entity.criteria.Criteria;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -25,7 +24,7 @@ public class OvenDAOImpl implements ApplianceDAO {
 
 
     @Override
-    public <E> Appliance find(Criteria<E> criteria)  {
+    public <E> Appliance find(Criteria<E> criteria) throws IOException {
 
         Map<E,Object> map = criteria.getCriteria();
 
@@ -37,19 +36,16 @@ public class OvenDAOImpl implements ApplianceDAO {
             while (reader.hasNextLine()) {
                 String line = reader.nextLine();
                 if (line.startsWith("Oven : ")) {
-                    System.out.println(line);
+                    appliance = buildAppliance(line);
                 }
             }
         }catch (IOException e){
-            e.printStackTrace();
-        }catch (Exception e){
-            e.printStackTrace();
+            throw e;
         }finally {
             if(reader != null){
                 reader.close();
             }
         }
-
         return appliance;
     }
 
@@ -78,6 +74,7 @@ public class OvenDAOImpl implements ApplianceDAO {
     private Oven buildAppliance(String resultSet){
 
         Oven oven = new Oven();
+
 
         return oven;
     }

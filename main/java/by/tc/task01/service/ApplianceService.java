@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ApplianceService {	
 	
-	<E> Appliance find(Criteria<E> criteria);
+	<E> Appliance find(Criteria<E> criteria) ;
 
 	<E> boolean add(Criteria<E> criteria);
 
