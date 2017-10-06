@@ -2,6 +2,7 @@ package by.tc.task01.dao.impl;
 
 import by.tc.task01.dao.ApplianceDAO;
 import by.tc.task01.dao.DAOException;
+import by.tc.task01.dao.FileParser;
 import by.tc.task01.entity.Appliance;
 import by.tc.task01.entity.Oven;
 import by.tc.task01.entity.criteria.Criteria;
@@ -27,70 +28,19 @@ public class OvenDAOImpl implements ApplianceDAO {
     @Override
     public <E> Appliance find(Criteria<E> criteria) {
 
-        Map<E,Object> map = criteria.getCriteria();
-        Set entitySet = map.entrySet();
-
-        List<String> criterians = new ArrayList<String>();
-
-        for(Object o : entitySet){
-            criterians.add(o.toString());
-        }
-
-
+        FileParser fileParser = new FileParser(file , criteria);
 
         Appliance appliance = null;
         try {
-            reader = new Scanner(file);
-            while (reader.hasNextLine()) {
-                String line = reader.nextLine();
-                if (line.startsWith("Oven")) {
-                    int count = 0;
-                    for(String buf : criterians){
-                        if(line.contains(buf)){
-                            count = count + 1;
-                        }
-                    }
-                    if(count == criterians.size()){
-
-                        Map<String ,String> objectMap = new HashMap<String, String>();
-
-                        String[] lineArr = line.split(" ");
-
-                        String[] entrySet = new String[lineArr.length - 2];
-
-                        System.arraycopy(lineArr , 2 , entrySet, 0 , lineArr.length - 2);
-
-                        for(String s : entrySet){
-                            System.out.println(s);
-                        }
-
-                        int lenght = entrySet.length;
-
-                       for(int i = 0; i < lenght; i++){
-
-                           int spaceIndex = entrySet[i].indexOf("=");
-
-                           String key = entrySet[i].substring(0, spaceIndex );
-                           String value = entrySet[i].substring((spaceIndex+1),entrySet[i].length() - 1);
-                           objectMap.put(key , value);
-                       }
-
-                        appliance = buildAppliance(objectMap);
-                        break;
-                    }
-                    //1)проверить на соответствие критерия.
-                    // если да, построить обьект и вернуть.
-
-                }
+            Map<String , String> appMap = fileParser.getApplianceMap("Oven");
+            if (appMap != null) {
+                appliance = buildAppliance(appMap);
             }
+            
         }catch (IOException e){
             throw new DAOException(e);
         }catch (Exception e){
             throw new DAOException(e);
-        }finally {
-            if(reader != null){
-                reader.close();
-            }
         }
         return appliance;
     }

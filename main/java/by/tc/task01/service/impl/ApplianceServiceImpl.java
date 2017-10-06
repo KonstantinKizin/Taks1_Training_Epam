@@ -22,13 +22,12 @@ public class ApplianceServiceImpl implements ApplianceService{
 		Appliance appliance = null;
 		if (valid) {
 			try {
-
 				appliance =  applianceDAO.find(criteria);
 
 			} catch (DAOException e) {
 				throw new ServiceException(e.getCause().getMessage());
 			}
-		}else throw new ServiceException("Invalid value");
+		}
 		return appliance;
 	}
 
