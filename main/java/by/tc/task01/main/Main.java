@@ -22,7 +22,7 @@ public class Main {
 
 		Criteria<Oven> criteriaOven = new Criteria<Oven>();
 		criteriaOven.add(Oven.CAPACITY, 33);
-		criteriaOven.add(Oven.HEIGHT , 0);
+		criteriaOven.add(Oven.HEIGHT , 40);
 
 		appliance = service.find(criteriaOven);
 

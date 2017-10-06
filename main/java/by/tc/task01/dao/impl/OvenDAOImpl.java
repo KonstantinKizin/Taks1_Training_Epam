@@ -43,7 +43,7 @@ public class OvenDAOImpl implements ApplianceDAO {
             reader = new Scanner(file);
             while (reader.hasNextLine()) {
                 String line = reader.nextLine();
-                if (line.startsWith("Oven : ")) {
+                if (line.startsWith("Oven")) {
                     int count = 0;
                     for(String buf : criterians){
                         if(line.contains(buf)){
@@ -60,6 +60,10 @@ public class OvenDAOImpl implements ApplianceDAO {
 
                         System.arraycopy(lineArr , 2 , entrySet, 0 , lineArr.length - 2);
 
+                        for(String s : entrySet){
+                            System.out.println(s);
+                        }
+
                         int lenght = entrySet.length;
 
                        for(int i = 0; i < lenght; i++){
@@ -72,7 +76,7 @@ public class OvenDAOImpl implements ApplianceDAO {
                        }
 
                         appliance = buildAppliance(objectMap);
-
+                        break;
                     }
                     //1)проверить на соответствие критерия.
                     // если да, построить обьект и вернуть.
