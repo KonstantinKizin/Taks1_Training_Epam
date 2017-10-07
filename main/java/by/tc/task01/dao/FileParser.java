@@ -40,8 +40,12 @@ public Map<String , String> getApplianceMap(String appType) throws IOException{
     }catch (IOException e){
         throw e;
     }finally {
-        if(reader != null){
-            reader.close();
+        if(reader != null) {
+            try {
+                reader.close();
+            } catch (Exception e) {
+                throw new DAOException(e);
+            }
         }
     }
     return appMap;
