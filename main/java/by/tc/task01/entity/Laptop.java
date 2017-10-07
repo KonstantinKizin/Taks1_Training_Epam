@@ -24,7 +24,7 @@ public class Laptop extends Appliance{
         return batareyCapacity;
     }
 
-    public void setBatareyCapacity(int batareyCapacity) {
+    public void setBatareyCapacity(float batareyCapacity) {
         this.batareyCapacity = batareyCapacity;
     }
 

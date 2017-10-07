@@ -8,27 +8,15 @@ import by.tc.task01.entity.Oven;
 import by.tc.task01.entity.criteria.Criteria;
 import by.tc.task01.entity.criteria.SearchCriteria;
 
-
-import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.*;
 
-public class OvenDAOImpl implements ApplianceDAO {
-
-    private static final String  PATH = "src"+ File.separator+"main"+File.separator+"resources"+File.separator+"appliances_db.txt";
-
-    private static final File file = new File(PATH);
-
-    private Scanner reader ;
-
-    private PrintWriter writer;
-
+public class OvenDAOImpl extends ApplianceDAOImpl {
 
     @Override
     public <E> Appliance find(Criteria<E> criteria) {
 
-        FileParser fileParser = new FileParser(file , criteria);
+        FileParser fileParser = new FileParser(super.file , criteria);
 
         Appliance appliance = null;
         try {
@@ -44,27 +32,6 @@ public class OvenDAOImpl implements ApplianceDAO {
         }
         return appliance;
     }
-
-    @Override
-    public <E> boolean add(Criteria<E> criteria) {
-        return false;
-    }
-
-    @Override
-    public <E> boolean delete(Criteria<E> criteria) {
-        return false;
-    }
-
-    @Override
-    public <E> void updateOrAdd(Criteria<E> criteria) {
-
-    }
-
-    @Override
-    public <E> List<Appliance> getAll() {
-        return null;
-    }
-
 
 
     private Oven buildAppliance( Map<String, String> appliancMap){

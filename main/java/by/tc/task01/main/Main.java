@@ -39,7 +39,27 @@ public class Main {
 
 		PrintApplianceInfo.print(appliance);
 
+
 		//////////////////////////////////////////////////////////////////
+
+		Criteria<Laptop> criteriaLaptop = new Criteria<Laptop>();
+		criteriaLaptop.add(Laptop.BATTERY_CAPACITY , 3);
+
+		appliance = service.find(criteriaLaptop);
+
+		PrintApplianceInfo.print(appliance);
+
+
+
+
+
+
+		//////////////////////////////////////////////////////////////////
+
+
+
+
+
 		
 		Criteria<TabletPC> criteriaTabletPC = new Criteria<TabletPC>();
 		criteriaTabletPC.add(TabletPC.COLOR, "Blue");

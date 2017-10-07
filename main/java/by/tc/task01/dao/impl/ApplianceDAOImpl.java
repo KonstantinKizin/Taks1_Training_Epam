@@ -4,13 +4,16 @@ import by.tc.task01.dao.ApplianceDAO;
 import by.tc.task01.dao.DAOException;
 import by.tc.task01.entity.Appliance;
 import by.tc.task01.entity.criteria.Criteria;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+
+import java.io.File;
 import java.util.List;
 
 
 public class ApplianceDAOImpl implements ApplianceDAO{
 
+	protected  final String  PATH = "src"+ File.separator+"main"+File.separator+"resources"+File.separator+"appliances_db.txt";
+
+	protected  final File file = new File(PATH);
 
 	@Override
 	public <E> Appliance find(Criteria<E> criteria)  {
