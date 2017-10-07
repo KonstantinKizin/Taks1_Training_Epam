@@ -32,7 +32,7 @@ public class ApplianceServiceImpl implements ApplianceService{
 			} catch (DAOException e) {
 				throw new ServiceException(e.getCause().getMessage());
 			}
-		}else throw new ServiceException("Invalid parametar");
+		}
 		return appliance;
 	}
 

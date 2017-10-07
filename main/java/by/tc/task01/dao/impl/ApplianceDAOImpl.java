@@ -2,10 +2,12 @@ package by.tc.task01.dao.impl;
 
 import by.tc.task01.dao.ApplianceDAO;
 import by.tc.task01.dao.DAOException;
+import by.tc.task01.dao.FileParser;
 import by.tc.task01.entity.Appliance;
 import by.tc.task01.entity.criteria.Criteria;
 import java.io.File;
-import java.util.List;
+import java.io.IOException;
+import java.util.Map;
 
 
 public class ApplianceDAOImpl implements ApplianceDAO{
@@ -14,36 +16,38 @@ public class ApplianceDAOImpl implements ApplianceDAO{
 
 	protected  final File file = new File(PATH);
 
+
+	protected String getTypeName(){
+		return "Appliance";
+	}
+
 	@Override
-	public <E> Appliance find(Criteria<E> criteria)  {
+	public  <E> Appliance find(Criteria<E> criteria)  {
+		FileParser fileParser = new FileParser(file , criteria);
 		Appliance appliance = null;
 		try {
-			appliance = new OvenDAOImpl().find(criteria);
-		} catch (DAOException e) {
+			Map<String , String> appMap = fileParser.getApplianceMap(getTypeName());
+			if (appMap != null) {
+				appliance = buildAppliance(appMap);
+			}
+		}catch (IOException e){
+			throw new DAOException(e);
+		}catch (Exception e){
 			throw new DAOException(e);
 		}
 		return appliance;
-	}
-
-	@Override
-	public <E> boolean add(Criteria<E> criteria) {
-		return false;
-	}
-
-	@Override
-	public <E> boolean delete(Criteria<E> criteria) {
-		return false;
-	}
-
-	@Override
-	public <E> void updateOrAdd(Criteria<E> criteria) {
 
 	}
 
-	@Override
-	public <E> List<Appliance> getAll() {
+
+	protected Appliance buildAppliance(Map<String, String> appliancMap){
+
 		return null;
 	}
+
+
+
+
 
 
 }

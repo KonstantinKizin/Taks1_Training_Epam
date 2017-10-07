@@ -1,41 +1,34 @@
 package by.tc.task01.dao.impl;
 
-import by.tc.task01.dao.DAOException;
-import by.tc.task01.dao.FileParser;
 import by.tc.task01.entity.Appliance;
 import by.tc.task01.entity.Laptop;
 import by.tc.task01.entity.criteria.Criteria;
 import by.tc.task01.entity.criteria.SearchCriteria;
-import java.io.IOException;
+
 
 import java.util.Map;
 
 
 public class LaptopDaoImpl extends ApplianceDAOImpl {
 
+
+    @Override
+    protected String getTypeName(){
+        return "Laptop";
+    }
+
     @Override
     public <E> Appliance find(Criteria<E> criteria) {
-        FileParser fileParser = new FileParser(super.file , criteria);
-        Appliance appliance = null;
-        try {
-            Map<String , String> appMap = fileParser.getApplianceMap("Laptop");
-            if (appMap != null) {
-                appliance = buildAppliance(appMap);
-            }
-        }catch (IOException e){
-            throw new DAOException(e);
-        }catch (Exception e){
-            throw new DAOException(e);
-        }
-        return appliance;
+        return super.find(criteria);
     }
 
 
-    private Laptop buildAppliance(Map<String, String> appliancMap){
+    @Override
+    protected Laptop buildAppliance(Map<String, String> appliancMap){
 
         Laptop laptop = new Laptop();
 
-        laptop.setBatareyCapacity((Float.parseFloat(appliancMap.get(SearchCriteria.Laptop.BATTERY_CAPACITY.name()))));
+        laptop.setBatareyCapacity(Float.parseFloat(appliancMap.get(SearchCriteria.Laptop.BATTERY_CAPACITY.name())));
 
         laptop.setCpu(Float.parseFloat(appliancMap.get(SearchCriteria.Laptop.CPU.name())));
 

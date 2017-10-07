@@ -57,7 +57,6 @@ public class Main {
 		criteriaRefrigirator.add(Refrigerator.POWER_CONSUMPTION , 100);
 
 
-
 		appliance = service.find(criteriaRefrigirator);
 
 		PrintApplianceInfo.print(appliance);
