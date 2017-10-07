@@ -34,9 +34,16 @@ public class VacuumCleanerCriteriaTest {
     }
 
     @Test
+    public void when_BAG_TYPE_is_string_then_should_return_true(){
+        criteriaVacuum.add(VacuumCleaner.BAG_TYPE , "s");
+        assertTrue(criteriaValidator(criteriaVacuum));
+
+    }
+
+    @Test
     public void when_WAND_TYPE_is_not_string_then_should_return_false(){
 
-        criteriaVacuum.add(VacuumCleaner.WAND_TYPE , 10);
+        criteriaVacuum.add(VacuumCleaner.WAND_TYPE , 1);
         assertTrue(criteriaValidator(criteriaVacuum) == false);
 
     }

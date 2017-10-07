@@ -92,7 +92,9 @@ public class Main {
 
 		Criteria<SearchCriteria.VacuumCleaner> criteriaVacuum = new Criteria<SearchCriteria.VacuumCleaner>();
 
-		criteriaVacuum.add(SearchCriteria.VacuumCleaner.MOTOR_SPEED_REGULATION , 2955);
+		//criteriaVacuum.add(SearchCriteria.VacuumCleaner.FILTER_TYPE , "A");
+		criteriaVacuum.add(SearchCriteria.VacuumCleaner.BAG_TYPE , "X");
+
 
 		appliance = service.find(criteriaVacuum);
 

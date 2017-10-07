@@ -2,9 +2,10 @@ package by.tc.task01.service.validation;
 
 import by.tc.task01.entity.criteria.Criteria;
 import by.tc.task01.entity.criteria.SearchCriteria;
+
+
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -37,7 +38,11 @@ public class Validator {
 
 			return checkTablePcCriterias(criterian);
 
-		}else return checkVacuumCleanerCriterias( criterian);
+		}else if(applianceName.equalsIgnoreCase("VacuumCleaner")){
+			return checkVacuumCleanerCriterias(criterian);
+		}
+
+		return false;
 	}
 
 	private static boolean checkOvenCriterias(Map<Object , Object> criterian){
@@ -99,26 +104,34 @@ public class Validator {
 	}
 
 	private static boolean checkVacuumCleanerCriterias(Map<Object , Object> criterian){
-		ArrayList<Object> values = new ArrayList<Object>(criterian.values());
+		if(criterian.values().size() == 0){
+			return false;
+		}
 
 		if(criterian.containsKey(SearchCriteria.VacuumCleaner.FILTER_TYPE)){
-			Object color = criterian.get(SearchCriteria.VacuumCleaner.FILTER_TYPE);
-			if((color instanceof String) == false) return false;
-			values.remove(SearchCriteria.VacuumCleaner.FILTER_TYPE);
+			Object filterType = criterian.get(SearchCriteria.VacuumCleaner.FILTER_TYPE);
+			if((filterType instanceof String) == false) return false;
 		}
 
 		if(criterian.containsKey(SearchCriteria.VacuumCleaner.BAG_TYPE)){
-			Object color = criterian.get(SearchCriteria.VacuumCleaner.BAG_TYPE);
-			if((color instanceof String) == false) return false;
-			values.remove(SearchCriteria.VacuumCleaner.BAG_TYPE);
+			Object bagType = criterian.get(SearchCriteria.VacuumCleaner.BAG_TYPE);
+			if((bagType instanceof String) == false) return false;
 		}
 
 		if(criterian.containsKey(SearchCriteria.VacuumCleaner.WAND_TYPE)){
-			Object color = criterian.get(SearchCriteria.VacuumCleaner.WAND_TYPE);
-			if((color instanceof String) == false) return false;
-			values.remove(SearchCriteria.VacuumCleaner.WAND_TYPE);
+			Object wandType = criterian.get(SearchCriteria.VacuumCleaner.WAND_TYPE);
+			if((wandType instanceof String) == false) return false;
 		}
-		return checkForNumber(values);
+
+		Collection<Object> nubmerParamet = new ArrayList<Object>();
+
+		for(Object obj : criterian.values()){
+			if(obj instanceof Number){
+				nubmerParamet.add(obj);
+			}
+		}
+
+		return checkForNumber(nubmerParamet);
 	}
 
 
@@ -140,6 +153,17 @@ public class Validator {
 		return true;
 	}
 
+
+	private boolean checkCriteriaForString(Map<Object , Object> map , SearchCriteria searchCriteria){
+
+		if(map.containsKey(searchCriteria)){
+			Object criteria = map.get(searchCriteria);
+			if(criteria instanceof String){
+				return true;
+			}else return false;
+		}
+		return false;
+	}
 
 
 

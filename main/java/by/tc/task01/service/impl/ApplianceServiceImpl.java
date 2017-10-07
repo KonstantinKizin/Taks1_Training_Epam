@@ -26,7 +26,7 @@ public class ApplianceServiceImpl implements ApplianceService{
 			} catch (DAOException e) {
 				throw new ServiceException(e.getMessage());
 			}
-		}
+		}else throw new ServiceException("invalid oprion");
 		return appliance;
 	}
 
