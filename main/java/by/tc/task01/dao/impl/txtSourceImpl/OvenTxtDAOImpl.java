@@ -15,11 +15,6 @@ public class OvenTxtDAOImpl extends AbstractAppliencTxtDAO {
         return "Oven";
     }
 
-    @Override
-    public <E> Appliance find(Criteria<E> criteria) {
-
-        return super.find(criteria);
-    }
 
 
     @Override

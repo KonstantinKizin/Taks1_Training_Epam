@@ -18,12 +18,7 @@ public class LaptopTxtDaoImpl extends AbstractAppliencTxtDAO {
         return "Laptop";
     }
 
-    @Override
-    public <E> Appliance find(Criteria<E> criteria) {
-        return super.find(criteria);
-    }
-
-
+    
     @Override
     protected Laptop buildAppliance(Map<String, String> appliancMap){
 

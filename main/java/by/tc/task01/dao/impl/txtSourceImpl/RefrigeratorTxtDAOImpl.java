@@ -15,10 +15,6 @@ public class RefrigeratorTxtDAOImpl extends AbstractAppliencTxtDAO {
         return "Refrigerator";
     }
 
-    @Override
-    public <E> Appliance find(Criteria<E> criteria) {
-       return super.find(criteria);
-    }
 
 
     @Override
