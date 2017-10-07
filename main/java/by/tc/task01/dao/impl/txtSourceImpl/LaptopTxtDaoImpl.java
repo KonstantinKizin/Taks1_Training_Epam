@@ -1,5 +1,6 @@
-package by.tc.task01.dao.impl;
+package by.tc.task01.dao.impl.txtSourceImpl;
 
+import by.tc.task01.dao.impl.AbstractAppliencTxtDAO;
 import by.tc.task01.entity.Appliance;
 import by.tc.task01.entity.Laptop;
 import by.tc.task01.entity.criteria.Criteria;
@@ -9,7 +10,7 @@ import by.tc.task01.entity.criteria.SearchCriteria;
 import java.util.Map;
 
 
-public class LaptopDaoImpl extends ApplianceDAOImpl {
+public class LaptopTxtDaoImpl extends AbstractAppliencTxtDAO {
 
 
     @Override
