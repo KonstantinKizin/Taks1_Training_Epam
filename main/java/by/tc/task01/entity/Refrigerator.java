@@ -16,7 +16,6 @@ public class Refrigerator extends Appliance{
 
     public Refrigerator(){
 
-
     }
 
     public float getPowerConsumption() {

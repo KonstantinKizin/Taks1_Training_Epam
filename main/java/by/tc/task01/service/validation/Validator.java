@@ -2,8 +2,6 @@ package by.tc.task01.service.validation;
 
 import by.tc.task01.entity.criteria.Criteria;
 import by.tc.task01.entity.criteria.SearchCriteria;
-
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
@@ -49,6 +47,7 @@ public class Validator {
 		return checkForNumber(criterian.values());
 	}
 
+
 	private static boolean checkLaptopCriterias(Map<Object , Object> criterian){
 		ArrayList<Object> values = new ArrayList<Object>(criterian.values());
 
@@ -72,8 +71,8 @@ public class Validator {
 
 
 	private static boolean checkSpeakersCriterias(Map<Object , Object> criterian){
-		ArrayList<Object> values = new ArrayList<Object>(criterian.values());
 
+		ArrayList<Object> values = new ArrayList<Object>(criterian.values());
 		if(criterian.containsKey(SearchCriteria.Speakers.FREQUENCY_RANGE)){
 			Object color = criterian.get(SearchCriteria.Speakers.FREQUENCY_RANGE);
 			if(color instanceof String){
@@ -90,6 +89,7 @@ public class Validator {
 
 
 	private static boolean checkTablePcCriterias(Map<Object , Object> criterian){
+
 		ArrayList<Object> values = new ArrayList<Object>(criterian.values());
 		if(criterian.containsKey(SearchCriteria.TabletPC.COLOR)){
 			Object color = criterian.get(SearchCriteria.TabletPC.COLOR);
@@ -104,9 +104,7 @@ public class Validator {
 	}
 
 	private static boolean checkVacuumCleanerCriterias(Map<Object , Object> criterian){
-		if(criterian.values().size() == 0){
-			return false;
-		}
+
 
 		if(criterian.containsKey(SearchCriteria.VacuumCleaner.FILTER_TYPE)){
 			Object filterType = criterian.get(SearchCriteria.VacuumCleaner.FILTER_TYPE);
@@ -145,9 +143,6 @@ public class Validator {
 			}
 			if((tmp instanceof Number) == false) {
 					return false;
-			}
-			if(tmp instanceof String) {
-				return false;
 			}
 		}
 		return true;

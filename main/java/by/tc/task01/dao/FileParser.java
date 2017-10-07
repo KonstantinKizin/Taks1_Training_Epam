@@ -1,7 +1,6 @@
 package by.tc.task01.dao;
 
 import by.tc.task01.entity.criteria.Criteria;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
@@ -9,9 +8,10 @@ import java.util.*;
 public class FileParser {
 
 private File file;
-private Criteria criteria;
-private Scanner reader;
 
+private Criteria criteria;
+
+private Scanner reader;
 
 
 public FileParser(File file , Criteria criteria){
@@ -57,7 +57,6 @@ private List<String> getCriteriansList(Criteria criteria){
     for(Object o : entitySet){
         criterians.add(o.toString() + ",");
     }
-
     return criterians;
 }
 

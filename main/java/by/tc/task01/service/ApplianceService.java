@@ -8,13 +8,4 @@ import java.util.List;
 public interface ApplianceService {	
 	
 	<E> Appliance find(Criteria<E> criteria) ;
-
-	<E> boolean add(Criteria<E> criteria);
-
-	<E> boolean delete(Criteria<E> criteria);
-
-	<E> void updateOrAdd(Criteria<E> criteria);
-
-	<E> List<Appliance> getAll();
-	
 }

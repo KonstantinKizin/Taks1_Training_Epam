@@ -8,7 +8,7 @@ import by.tc.task01.entity.criteria.Criteria;
 import by.tc.task01.service.ApplianceService;
 import by.tc.task01.service.ServiceException;
 import static by.tc.task01.service.validation.Validator.criteriaValidator;
-import java.util.List;
+
 
 public class ApplianceServiceImpl implements ApplianceService{
 
@@ -26,36 +26,10 @@ public class ApplianceServiceImpl implements ApplianceService{
 			} catch (DAOException e) {
 				throw new ServiceException(e.getMessage());
 			}
-		}else throw new ServiceException("invalid oprion");
+		}
 		return appliance;
 	}
 
-
-
-	@Override
-	public <E> boolean add(Criteria<E> criteria) {
-
-		return false;
-	}
-
-
-	@Override
-	public <E> boolean delete(Criteria<E> criteria) {
-
-
-		return false;
-	}
-
-	@Override
-	public <E> void updateOrAdd(Criteria<E> criteria) {
-
-
-	}
-
-	@Override
-	public <E> List<Appliance> getAll() {
-		return null;
-	}
 
 }
 

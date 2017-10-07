@@ -51,11 +51,10 @@ public class Main {
 
 		PrintApplianceInfo.print(appliance);
 
-
+		//////////////////////////////////////////////////////////////////
 
 		Criteria<Refrigerator> criteriaRefrigirator = new Criteria<Refrigerator>();
 		criteriaRefrigirator.add(Refrigerator.POWER_CONSUMPTION , 100);
-
 
 		appliance = service.find(criteriaRefrigirator);
 
@@ -63,12 +62,8 @@ public class Main {
 
 
 		Criteria<Speakers> criteriaSpeaker = new Criteria<Speakers>();
-
 		criteriaSpeaker.add(Speakers.NUMBER_OF_SPEAKERS , 2);
-
 		criteriaSpeaker.add(Speakers.FREQUENCY_RANGE,  "2-4");
-
-
 
 		appliance = service.find(criteriaSpeaker);
 
@@ -84,15 +79,16 @@ public class Main {
 		criteriaTabletPC.add(TabletPC.DISPLAY_INCHES, 16);
 		criteriaTabletPC.add(TabletPC.MEMORY_ROM, 16000);
 
-
 		appliance = service.find(criteriaTabletPC);
 
 		PrintApplianceInfo.print(appliance);
 
-		Criteria<SearchCriteria.VacuumCleaner> criteriaVacuum = new Criteria<SearchCriteria.VacuumCleaner>();
 
-		//criteriaVacuum.add(SearchCriteria.VacuumCleaner.FILTER_TYPE , "A");
-		criteriaVacuum.add(SearchCriteria.VacuumCleaner.BAG_TYPE , "X");
+
+		//////////////////////////////////////////////////////////////////
+		Criteria<SearchCriteria.VacuumCleaner> criteriaVacuum = new Criteria<SearchCriteria.VacuumCleaner>();
+		criteriaVacuum.add(SearchCriteria.VacuumCleaner.FILTER_TYPE , "A");
+		criteriaVacuum.add(SearchCriteria.VacuumCleaner.BAG_TYPE , "XXX");
 
 
 		appliance = service.find(criteriaVacuum);
