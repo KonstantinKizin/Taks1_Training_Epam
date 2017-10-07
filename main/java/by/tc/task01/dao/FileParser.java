@@ -55,8 +55,9 @@ private List<String> getCriteriansList(Criteria criteria){
     Set entitySet = map.entrySet();
     List<String> criterians = new ArrayList<String>();
     for(Object o : entitySet){
-        criterians.add(o.toString());
+        criterians.add(o.toString() + ",");
     }
+
     return criterians;
 }
 
@@ -65,7 +66,8 @@ private List<String> getCriteriansList(Criteria criteria){
 private boolean lookingByCriterians(List<String> criteriansList , String resultLine){
     int count = 0;
     for(String buf : criteriansList){
-        if(resultLine.contains(buf)){
+        String newBuf = buf.replace(',',';');
+        if(resultLine.contains(buf) || resultLine.contains(newBuf)){
             count = count + 1;
         }
     }
