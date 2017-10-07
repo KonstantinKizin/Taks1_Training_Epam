@@ -18,7 +18,7 @@ public class LaptopTxtDaoImpl extends AbstractAppliencTxtDAO {
         return "Laptop";
     }
 
-    
+
     @Override
     protected Laptop buildAppliance(Map<String, String> appliancMap){
 
