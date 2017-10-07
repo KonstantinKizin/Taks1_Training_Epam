@@ -22,6 +22,8 @@ public class SpeakersTxtDAOImpl extends AbstractAppliencTxtDAO {
 
 
 
+
+
         return speakers;
     }
 }

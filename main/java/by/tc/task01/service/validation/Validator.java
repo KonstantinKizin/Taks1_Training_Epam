@@ -4,27 +4,40 @@ import by.tc.task01.entity.criteria.Criteria;
 import by.tc.task01.entity.criteria.SearchCriteria;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Validator {
 	
 	public static <E> boolean criteriaValidator(Criteria<E> criteria) {
-		Map<E , Object> criterian = criteria.getCriteria();
+		Map<Object , Object> criterian = (Map<Object, Object>)criteria.getCriteria();
 		String applianceName = criteria.getApplianceName();
 
 		if(applianceName.equalsIgnoreCase("Oven")){
-			return checkOvenCriterias((Map<Object, Object>) criterian);
+			return checkOvenCriterias( criterian);
 		}else if(applianceName.equals("Laptop")){
-			return checkLaptopCriterias((Map<Object, Object>) criterian);
+
+			return checkLaptopCriterias( criterian);
+
 		}else if(applianceName.equals("Refrigerator")){
-			return checkRefrigeratorCriterias((Map<Object, Object>) criterian);
+
+			return checkRefrigeratorCriterias(criterian);
+
 		}else if(applianceName.equals("Speakers")){
-			return checkSpeakersCriterias((Map<Object, Object>) criterian);
+
+			return checkSpeakersCriterias(criterian);
+
 		}else if(applianceName.equals("Speakers")){
-			return checkSpeakersCriterias((Map<Object, Object>) criterian);
+
+			return checkSpeakersCriterias(criterian);
+
 		} else if(applianceName.equals("TabletPC")){
-			return checkTablePcCriterias((Map<Object, Object>) criterian);
-		}else return checkVacuumCleanerCriterias((Map<Object, Object>) criterian);
+
+			return checkTablePcCriterias(criterian);
+
+		}else return checkVacuumCleanerCriterias( criterian);
 	}
 
 	private static boolean checkOvenCriterias(Map<Object , Object> criterian){
@@ -32,11 +45,18 @@ public class Validator {
 	}
 
 	private static boolean checkLaptopCriterias(Map<Object , Object> criterian){
+		ArrayList<Object> values = new ArrayList<Object>(criterian.values());
+
 		if(criterian.containsKey(SearchCriteria.Laptop.OS) == false){
 			return checkForNumber(criterian.values());
 		}else{
 			Object os = criterian.get(SearchCriteria.Laptop.OS);
-			return  (os instanceof String);
+			if( os instanceof String){
+				values.remove(os);
+				return checkForNumber(values);
+			}else {
+				return false;
+			}
 		}
 	}
 
@@ -47,8 +67,22 @@ public class Validator {
 
 
 	private static boolean checkSpeakersCriterias(Map<Object , Object> criterian){
-		return checkForNumber(criterian.values());
+		ArrayList<Object> values = new ArrayList<Object>(criterian.values());
+
+		if(criterian.containsKey(SearchCriteria.Speakers.FREQUENCY_RANGE)){
+			Object color = criterian.get(SearchCriteria.Speakers.FREQUENCY_RANGE);
+			if(color instanceof String){
+				String freRange = (String) color;
+				Pattern pattern = Pattern.compile("(\\d{1,})-(\\d{1,})");
+				Matcher matcher = pattern.matcher(freRange);
+				if(matcher.find()){
+					values.remove(color);
+				}else return false;
+			}else return false;
+		}
+		return checkForNumber(values);
 	}
+
 
 	private static boolean checkTablePcCriterias(Map<Object , Object> criterian){
 		ArrayList<Object> values = new ArrayList<Object>(criterian.values());
@@ -93,9 +127,15 @@ public class Validator {
 		for(Object tmp : values){
 			if((tmp instanceof Number)){
 				if(((Number) tmp).doubleValue() < 0) {
-					return false;}
-			}else if((tmp instanceof Number) == false) {
-					return false;}
+					return false;
+				}
+			}
+			if((tmp instanceof Number) == false) {
+					return false;
+			}
+			if(tmp instanceof String) {
+				return false;
+			}
 		}
 		return true;
 	}

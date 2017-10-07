@@ -6,7 +6,7 @@ public class Speakers extends Appliance{
 
     private int numberOfSpeakers;
 
-    private float frequencyRange;
+    private String frequencyRange;
 
     private float cordLenght;
 
@@ -30,11 +30,11 @@ public class Speakers extends Appliance{
         this.numberOfSpeakers = numberOfSpeakers;
     }
 
-    public float getFrequencyRange() {
+    public String getFrequencyRange() {
         return frequencyRange;
     }
 
-    public void setFrequencyRange(float frequencyRange) {
+    public void setFrequencyRange(String frequencyRange) {
         this.frequencyRange = frequencyRange;
     }
 
@@ -55,15 +55,15 @@ public class Speakers extends Appliance{
 
         if (Float.compare(speakers.powerConsumption, powerConsumption) != 0) return false;
         if (numberOfSpeakers != speakers.numberOfSpeakers) return false;
-        if (Float.compare(speakers.frequencyRange, frequencyRange) != 0) return false;
-        return Float.compare(speakers.cordLenght, cordLenght) == 0;
+        if (Float.compare(speakers.cordLenght, cordLenght) != 0) return false;
+        return frequencyRange.equals(speakers.frequencyRange);
     }
 
     @Override
     public int hashCode() {
         int result = (powerConsumption != +0.0f ? Float.floatToIntBits(powerConsumption) : 0);
         result = 31 * result + numberOfSpeakers;
-        result = 31 * result + (frequencyRange != +0.0f ? Float.floatToIntBits(frequencyRange) : 0);
+        result = 31 * result + frequencyRange.hashCode();
         result = 31 * result + (cordLenght != +0.0f ? Float.floatToIntBits(cordLenght) : 0);
         return result;
     }
@@ -73,10 +73,8 @@ public class Speakers extends Appliance{
         return "Speakers{" +
                 "powerConsumption=" + powerConsumption +
                 ", numberOfSpeakers=" + numberOfSpeakers +
-                ", frequencyRange=" + frequencyRange +
+                ", frequencyRange='" + frequencyRange + '\'' +
                 ", cordLenght=" + cordLenght +
                 '}';
     }
-
-
 }
