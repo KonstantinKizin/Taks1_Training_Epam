@@ -1,10 +1,8 @@
 package by.tc.task01.service.impl;
 
+import by.tc.task01.dao.ApplianceDAO;
 import by.tc.task01.dao.DAOException;
-import by.tc.task01.dao.impl.txtSourceImpl.LaptopTxtDaoImpl;
-import by.tc.task01.dao.impl.txtSourceImpl.OvenTxtDAOImpl;
-import by.tc.task01.dao.impl.txtSourceImpl.RefrigeratorTxtDAOImpl;
-import by.tc.task01.dao.impl.txtSourceImpl.TablePCTxtDAOImpl;
+import by.tc.task01.dao.impl.ApplianceDAOImpl;
 import by.tc.task01.entity.Appliance;
 import by.tc.task01.entity.criteria.Criteria;
 import by.tc.task01.service.ApplianceService;
@@ -14,6 +12,8 @@ import java.util.List;
 
 public class ApplianceServiceImpl implements ApplianceService{
 
+	private ApplianceDAO applianceDAO;
+
 
 	@Override
 	public <E> Appliance find(Criteria<E> criteria) {
@@ -21,19 +21,10 @@ public class ApplianceServiceImpl implements ApplianceService{
 		Appliance appliance = null;
 		if (valid) {
 			try {
-				String applianceName = criteria.getApplianceName();
-
-				if(applianceName.equalsIgnoreCase("Oven")){
-					appliance =  new OvenTxtDAOImpl().find(criteria);
-				}else if(applianceName.equalsIgnoreCase("Laptop")){
-					appliance = new LaptopTxtDaoImpl().find(criteria);
-				}else if(applianceName.equalsIgnoreCase("Refrigerator")){
-					appliance = new RefrigeratorTxtDAOImpl().find(criteria);
-				}else if(applianceName.equalsIgnoreCase("TabletPC")){
-					appliance = new TablePCTxtDAOImpl().find(criteria);
-				}
+				applianceDAO = new ApplianceDAOImpl();
+				appliance = applianceDAO.find(criteria);
 			} catch (DAOException e) {
-				throw new ServiceException(e.getCause().getMessage());
+				throw new ServiceException(e.getMessage());
 			}
 		}
 		return appliance;

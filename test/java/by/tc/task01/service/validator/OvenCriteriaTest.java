@@ -32,7 +32,7 @@ public class OvenCriteriaTest {
     }
 
     @Test
-    public void when_all_parameters_is_Number_should_return_true(){
+    public void when_all_parameters_are_Number_should_return_true(){
 
         criteriaOven.add(SearchCriteria.Oven.POWER_CONSUMPTION , 123);
         criteriaOven.add(SearchCriteria.Oven.WEIGHT,10);

@@ -1,6 +1,6 @@
 package by.tc.task01.entity;
 
-public class VacuumCleaner extends Appliance{
+public class VacuumCleaner extends Appliance {
 
     private float powerConsumption;
 
@@ -8,17 +8,18 @@ public class VacuumCleaner extends Appliance{
 
     private String bagType;
 
-    private String wand_type;
+    private String wandType;
 
-    private String motorSpeedRegulation;
+    private float motorSpeedRegulation;
 
     private float cleaningWidth;
 
-    public VacuumCleaner(){
+    public VacuumCleaner() {
 
     }
 
     public float getPowerConsumption() {
+
         return powerConsumption;
     }
 
@@ -42,19 +43,19 @@ public class VacuumCleaner extends Appliance{
         this.bagType = bagType;
     }
 
-    public String getWand_type() {
-        return wand_type;
+    public String getWandType() {
+        return wandType;
     }
 
-    public void setWand_type(String wand_type) {
-        this.wand_type = wand_type;
+    public void setWandType(String wandType) {
+        this.wandType = wandType;
     }
 
-    public String getMotorSpeedRegulation() {
+    public float getMotorSpeedRegulation() {
         return motorSpeedRegulation;
     }
 
-    public void setMotorSpeedRegulation(String motorSpeedRegulation) {
+    public void setMotorSpeedRegulation(float motorSpeedRegulation) {
         this.motorSpeedRegulation = motorSpeedRegulation;
     }
 
@@ -66,6 +67,17 @@ public class VacuumCleaner extends Appliance{
         this.cleaningWidth = cleaningWidth;
     }
 
+    @Override
+    public String toString() {
+        return "VacuumCleaner{" +
+                "powerConsumption=" + powerConsumption +
+                ", filterType='" + filterType + '\'' +
+                ", bagType='" + bagType + '\'' +
+                ", wandType='" + wandType + '\'' +
+                ", motorSpeedRegulation=" + motorSpeedRegulation +
+                ", cleaningWidth=" + cleaningWidth +
+                '}';
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -75,11 +87,11 @@ public class VacuumCleaner extends Appliance{
         VacuumCleaner that = (VacuumCleaner) o;
 
         if (Float.compare(that.powerConsumption, powerConsumption) != 0) return false;
+        if (Float.compare(that.motorSpeedRegulation, motorSpeedRegulation) != 0) return false;
         if (Float.compare(that.cleaningWidth, cleaningWidth) != 0) return false;
         if (!filterType.equals(that.filterType)) return false;
         if (!bagType.equals(that.bagType)) return false;
-        if (!wand_type.equals(that.wand_type)) return false;
-        return motorSpeedRegulation.equals(that.motorSpeedRegulation);
+        return wandType.equals(that.wandType);
     }
 
     @Override
@@ -87,22 +99,10 @@ public class VacuumCleaner extends Appliance{
         int result = (powerConsumption != +0.0f ? Float.floatToIntBits(powerConsumption) : 0);
         result = 31 * result + filterType.hashCode();
         result = 31 * result + bagType.hashCode();
-        result = 31 * result + wand_type.hashCode();
-        result = 31 * result + motorSpeedRegulation.hashCode();
+        result = 31 * result + wandType.hashCode();
+        result = 31 * result + (motorSpeedRegulation != +0.0f ? Float.floatToIntBits(motorSpeedRegulation) : 0);
         result = 31 * result + (cleaningWidth != +0.0f ? Float.floatToIntBits(cleaningWidth) : 0);
         return result;
     }
 
-
-    @Override
-    public String toString() {
-        return "VacuumCleaner{" +
-                "powerConsumption=" + powerConsumption +
-                ", filterType='" + filterType + '\'' +
-                ", bagType='" + bagType + '\'' +
-                ", wand_type='" + wand_type + '\'' +
-                ", motorSpeedRegulation='" + motorSpeedRegulation + '\'' +
-                ", cleaningWidth=" + cleaningWidth +
-                '}';
-    }
 }

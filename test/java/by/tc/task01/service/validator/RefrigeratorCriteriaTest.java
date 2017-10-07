@@ -16,7 +16,7 @@ public class RefrigeratorCriteriaTest {
     }
 
     @Test
-    public void when_all_parametars_is_number_should_return_true(){
+    public void when_all_parametars_are_number_should_return_true(){
         criteriaRefrigerator.add(SearchCriteria.Refrigerator.POWER_CONSUMPTION , 10);
         criteriaRefrigerator.add(SearchCriteria.Refrigerator.WIDTH , 10);
         criteriaRefrigerator.add(SearchCriteria.Refrigerator.OVERALL_CAPACITY , 10);

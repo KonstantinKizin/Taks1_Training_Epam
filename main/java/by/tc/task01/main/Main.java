@@ -3,7 +3,9 @@ package by.tc.task01.main;
 import static by.tc.task01.entity.criteria.SearchCriteria.*;
 
 import by.tc.task01.entity.Appliance;
+import by.tc.task01.entity.VacuumCleaner;
 import by.tc.task01.entity.criteria.Criteria;
+import by.tc.task01.entity.criteria.SearchCriteria;
 import by.tc.task01.service.ApplianceService;
 import by.tc.task01.service.ServiceFactory;
 
@@ -43,8 +45,8 @@ public class Main {
 		//////////////////////////////////////////////////////////////////
 
 		Criteria<Laptop> criteriaLaptop = new Criteria<Laptop>();
-		criteriaLaptop.add(Laptop.OS , "Windows");
-		criteriaLaptop.add(Laptop.BATTERY_CAPACITY , 1);
+		criteriaLaptop.add(Laptop.OS , "Linux");
+		criteriaLaptop.add(Laptop.BATTERY_CAPACITY , 1.5);
 
 		appliance = service.find(criteriaLaptop);
 
@@ -61,14 +63,21 @@ public class Main {
 		PrintApplianceInfo.print(appliance);
 
 
+		Criteria<Speakers> criteriaSpeaker = new Criteria<Speakers>();
+
+		criteriaSpeaker.add(Speakers.NUMBER_OF_SPEAKERS , 2);
+
+		criteriaSpeaker.add(Speakers.FREQUENCY_RANGE,  "2-4");
+
+
+
+		appliance = service.find(criteriaSpeaker);
+
+		PrintApplianceInfo.print(appliance);
 
 
 
 		//////////////////////////////////////////////////////////////////
-
-
-
-
 
 		
 		Criteria<TabletPC> criteriaTabletPC = new Criteria<TabletPC>();
@@ -80,6 +89,16 @@ public class Main {
 		appliance = service.find(criteriaTabletPC);
 
 		PrintApplianceInfo.print(appliance);
+
+		Criteria<SearchCriteria.VacuumCleaner> criteriaVacuum = new Criteria<SearchCriteria.VacuumCleaner>();
+
+		criteriaVacuum.add(SearchCriteria.VacuumCleaner.MOTOR_SPEED_REGULATION , 2955);
+
+		appliance = service.find(criteriaVacuum);
+
+		PrintApplianceInfo.print(appliance);
+
+
 
 
 
