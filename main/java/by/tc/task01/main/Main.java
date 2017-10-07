@@ -44,8 +44,8 @@ public class Main {
 		//////////////////////////////////////////////////////////////////
 
 		Criteria<Laptop> criteriaLaptop = new Criteria<Laptop>();
-		criteriaLaptop.add(Laptop.OS , "Linux");
-		criteriaLaptop.add(Laptop.BATTERY_CAPACITY , 1.5);
+		criteriaLaptop.add(Laptop.OS , "Windows");
+		criteriaLaptop.add(Laptop.BATTERY_CAPACITY , 1);
 
 		appliance = service.find(criteriaLaptop);
 
