@@ -11,7 +11,7 @@ private File file;
 
 private Criteria criteria;
 
-private Scanner reader;
+
 
 
 public FileParser(File file , Criteria criteria){
@@ -22,8 +22,11 @@ public FileParser(File file , Criteria criteria){
 
 
 
-public Map<String , String> getApplianceMap(String appType) throws IOException{
+public Map<String , String> getApplianceMap(String appType) throws Exception {
+
     Map<String , String> appMap = null;
+    Scanner reader = null;
+
     List<String > criterians = getCriteriansList(this.criteria);
     try{
         reader  = new Scanner(file);
@@ -44,7 +47,7 @@ public Map<String , String> getApplianceMap(String appType) throws IOException{
             try {
                 reader.close();
             } catch (Exception e) {
-                throw new DAOException(e);
+                throw e;
             }
         }
     }
