@@ -42,9 +42,9 @@ public class RefrigeratorDAOImpl extends ApplianceDAOImpl {
 
         ref.setPowerConsumption(Float.parseFloat(appliancMap.get(SearchCriteria.Refrigerator.POWER_CONSUMPTION.name())));
 
-        ref.setWeight(Float.parseFloat(appliancMap.get(SearchCriteria.Refrigerator.POWER_CONSUMPTION.name())));
+        ref.setWeight(Float.parseFloat(appliancMap.get(SearchCriteria.Refrigerator.WEIGHT.name())));
 
-        ref.setWidth(Float.parseFloat(appliancMap.get(SearchCriteria.Refrigerator.POWER_CONSUMPTION.name())));
+        ref.setWidth(Float.parseFloat(appliancMap.get(SearchCriteria.Refrigerator.WIDTH.name())));
 
         return ref;
     }
