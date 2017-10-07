@@ -4,6 +4,7 @@ import static by.tc.task01.entity.criteria.SearchCriteria.*;
 
 import by.tc.task01.entity.Appliance;
 import by.tc.task01.entity.criteria.Criteria;
+import by.tc.task01.entity.criteria.SearchCriteria;
 import by.tc.task01.service.ApplianceService;
 import by.tc.task01.service.ServiceFactory;
 
@@ -43,12 +44,23 @@ public class Main {
 		//////////////////////////////////////////////////////////////////
 
 		Criteria<Laptop> criteriaLaptop = new Criteria<Laptop>();
-		criteriaLaptop.add(Laptop.BATTERY_CAPACITY , 3);
+		criteriaLaptop.add(Laptop.OS , "Windows");
+		criteriaLaptop.add(Laptop.BATTERY_CAPACITY , 1);
 
 		appliance = service.find(criteriaLaptop);
 
 		PrintApplianceInfo.print(appliance);
 
+
+
+		Criteria<Refrigerator> criteriaRefrigirator = new Criteria<Refrigerator>();
+		criteriaRefrigirator.add(Refrigerator.POWER_CONSUMPTION , 100);
+
+
+
+		appliance = service.find(criteriaRefrigirator);
+
+		PrintApplianceInfo.print(appliance);
 
 
 

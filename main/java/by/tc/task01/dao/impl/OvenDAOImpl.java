@@ -38,17 +38,17 @@ public class OvenDAOImpl extends ApplianceDAOImpl {
 
         Oven oven = new Oven();
 
-        oven.setCapacity(Float.valueOf(appliancMap.get(SearchCriteria.Oven.CAPACITY.name())));
+        oven.setCapacity(Float.parseFloat(appliancMap.get(SearchCriteria.Oven.CAPACITY.name())));
 
-        oven.setDepth(Float.valueOf(appliancMap.get(SearchCriteria.Oven.DEPTH.name())));
+        oven.setDepth(Float.parseFloat(appliancMap.get(SearchCriteria.Oven.DEPTH.name())));
 
-        oven.setHeight(Float.valueOf(appliancMap.get(SearchCriteria.Oven.HEIGHT.name())));
+        oven.setHeight(Float.parseFloat(appliancMap.get(SearchCriteria.Oven.HEIGHT.name())));
 
-        oven.setPowerConsuption(Float.valueOf(appliancMap.get(SearchCriteria.Oven.POWER_CONSUMPTION.name())));
+        oven.setPowerConsuption(Float.parseFloat(appliancMap.get(SearchCriteria.Oven.POWER_CONSUMPTION.name())));
 
-        oven.setWeight(Float.valueOf(appliancMap.get(SearchCriteria.Oven.WEIGHT.name())));
+        oven.setWeight(Float.parseFloat(appliancMap.get(SearchCriteria.Oven.WEIGHT.name())));
 
-        oven.setWidth(Float.valueOf(appliancMap.get(SearchCriteria.Oven.WIDTH.name())));
+        oven.setWidth(Float.parseFloat(appliancMap.get(SearchCriteria.Oven.WIDTH.name())));
 
         return oven;
     }

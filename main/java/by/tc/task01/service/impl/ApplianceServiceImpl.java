@@ -3,6 +3,7 @@ package by.tc.task01.service.impl;
 import by.tc.task01.dao.DAOException;
 import by.tc.task01.dao.impl.LaptopDaoImpl;
 import by.tc.task01.dao.impl.OvenDAOImpl;
+import by.tc.task01.dao.impl.RefrigeratorDAOImpl;
 import by.tc.task01.entity.Appliance;
 import by.tc.task01.entity.criteria.Criteria;
 import by.tc.task01.service.ApplianceService;
@@ -25,11 +26,13 @@ public class ApplianceServiceImpl implements ApplianceService{
 					appliance =  new OvenDAOImpl().find(criteria);
 				}else if(applianceName.equalsIgnoreCase("Laptop")){
 					appliance = new LaptopDaoImpl().find(criteria);
+				}else if(applianceName.equalsIgnoreCase("Refrigerator")){
+					appliance = new RefrigeratorDAOImpl().find(criteria);
 				}
 			} catch (DAOException e) {
 				throw new ServiceException(e.getCause().getMessage());
 			}
-		}
+		}else throw new ServiceException("Invalid parametar");
 		return appliance;
 	}
 
